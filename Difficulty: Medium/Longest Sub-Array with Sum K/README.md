@@ -1,0 +1,12 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=longest-sub-array-with-sum-k">Longest Sub-Array with Sum K</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given an array <strong><code>arr[]</code></strong> containing integers and an integer <strong><code>k</code></strong>, your task is to find the length of the longest subarray where the sum of its elements is equal to the given value <code>k</code>. It is guaranteed that a valid subarray exists.</span></p>
+<p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr[] = [10, 5, 2, 7, 1, 9], k = 15
+<strong>Output:</strong> 4
+<strong>Explanation: </strong>The subarray <code>[5, 2, 7, 1]</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> has a sum of 15 and length 4.</span></span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input:</strong> arr[] = [-1, 2, -3], k = -2
+<strong>Output:</strong> 3
+<strong>Explanation: </strong>The subarray <code>[-1, 2, -3]</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> has a sum of -2 and length 3.</span></span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input:</strong> arr[] = [1, -1, 5, -2, 3], k = 3
+<strong>Output:</strong> 4
+<strong>Explanation: </strong>The subarray <code>[1, -1, 5, -2]</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> has a sum of 3 and a length 4.</span></span></pre>
+<p><span style="font-size: 14pt;"><strong>Constraints:</strong></span><br><span style="font-size: 14pt;">1&nbsp;≤&nbsp;arr.size() ≤ 10<sup>6<br></sup>-10<sup>9 </sup>≤ arr[i], k ≤ 10<sup>9</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Amazon</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Arrays</code>&nbsp;<code>Hash</code>&nbsp;<code>Map</code>&nbsp;<code>Data Structures</code>&nbsp;<code>Algorithms</code>&nbsp;
