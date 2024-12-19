@@ -1,15 +1,10 @@
 class Solution(object):
     def singleNumber(self, nums):
-        h={}
-        n=len(nums)
+        xor=0
         for i in nums:
-            if i in h:
-                h[i]+=1
-            else:
-                h[i]=1
-        for i,k in h.items():
-            if k==1:
-                return i
+            xor=xor^i
+        return xor
+        
         """
         :type nums: List[int]
         :rtype: int
