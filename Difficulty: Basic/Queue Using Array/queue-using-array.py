@@ -2,15 +2,15 @@
 
 class MyQueue:
     def __init__(self):
-        self.arr=[]
+        self.arr=[0]*(10**5)
         self.start=0
         self.end=0
         self.cursize=0
     
     #Function to push an element x in a queue.
     def push(self, x):
-        self.arr.append(x)
-        self.end+=1
+        self.arr[self.end]=x
+        self.end=(self.end+1)%(10**5)
         self.cursize+=1
          
          #add code here
@@ -20,12 +20,9 @@ class MyQueue:
         if self.cursize==0:
             return -1
         popped=self.arr[self.start]
-        self.start+=1
+        self.start=(self.start+1)%(10**5)
         self.cursize-=1
-        return popped
-        
-        
-        
+        return popped 
          
          # add code here
 
