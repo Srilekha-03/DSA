@@ -18,10 +18,10 @@ class Solution:
             result+=str(stack[-1])
             stack.pop()
         #if there are 0's
-        while result and result[-1]=="0" and len(result)>len(num)-k:
+        while result and result[-1]=="0" and len(result)>len(num)-k:#pranitha invention
             result=result[:-1]
         result=''.join(reversed(result))
-        while result and result[0]=="0" and len(result)>1:
+        while result and result[0]=="0" and len(result)>1:#my invention
             result=result[1:]
         return result
 
