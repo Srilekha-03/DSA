@@ -1,13 +1,14 @@
 class Solution:
     def sumSubarrayMins(self, arr: List[int]) -> int:
+        mod = 10**9 + 7
         nse=self.nse(arr)
         pse=self.pse(arr)
         total=0
         for i in range(len(arr)):
             left=i-pse[i]
             right=nse[i]-i
-            total+=(left*right)*arr[i]
-        return total
+            total+=((left*right)*arr[i])%mod
+        return total%mod
     def nse(self,arr):
         n=len(arr)
         stack=[]
