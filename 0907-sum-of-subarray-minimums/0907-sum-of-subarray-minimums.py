@@ -14,7 +14,7 @@ class Solution:
         stack=[]
         ans=[0]*n
         for i in range(n-1,-1,-1):
-            while stack and arr[stack[-1]]>arr[i]:
+            while stack and arr[stack[-1]]>=arr[i]:
                 stack.pop()
             ans[i]=stack[-1] if stack else n
             stack.append(i)
@@ -24,7 +24,7 @@ class Solution:
         stack=[]
         ans=[0]*n
         for i in range(n):
-            while stack and arr[stack[-1]]>=arr[i]:
+            while stack and arr[stack[-1]]>arr[i]:
                 stack.pop()
             ans[i]=stack[-1] if stack else -1
             stack.append(i)
