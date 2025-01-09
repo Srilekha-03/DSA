@@ -5,14 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def __init__(self):
-        self.ans = []
-
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if root==None:
+        if root is None:
             return []
-        self.postorderTraversal(root.left)
-        self.postorderTraversal(root.right)
-        self.ans.append(root.val)
-        return self.ans
+        stack1=[]
+        stack2=[]
+        stack1.append(root)
+        while stack1:
+            node=stack1.pop()
+            stack2.append(node.val)
+            if node.left:
+                stack1.append(node.left)
+            if node.right:
+                stack1.append(node.right)
+        result=list(reversed(stack2))
+        return result
+            
+
         
