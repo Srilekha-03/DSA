@@ -16,5 +16,5 @@ class Solution:
             maxi[0]=max(maxi[0],left+right+root.val)
             return root.val+max(left,right)
         leftRightSum(root)
-        return max[0]
+        return maxi[0]
         
