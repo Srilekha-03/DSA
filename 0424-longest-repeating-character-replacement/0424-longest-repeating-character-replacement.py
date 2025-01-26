@@ -19,7 +19,8 @@ class Solution:
                     maxlen=max(maxlen,j)
 
                 l+=1
-            maxlen=max(maxlen,r-l+1)
+            if (r-l+1)-maxfreq<=k:
+                maxlen=max(maxlen,r-l+1)
             r+=1
         return maxlen
 
