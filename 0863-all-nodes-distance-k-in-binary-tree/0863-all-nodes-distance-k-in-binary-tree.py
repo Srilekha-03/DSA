@@ -38,7 +38,7 @@ class Solution:
         q=[]
         q.append(root)
         while q:
-            node=q.pop()
+            node=q.popleft()
             if node.left:
                 d[node.left]=node
                 q.append(node.left)
