@@ -35,7 +35,7 @@ class Solution:
 
     def parentMap(self,root):
         d = {root: None} 
-        q=[]
+        q=deque()
         q.append(root)
         while q:
             node=q.popleft()
