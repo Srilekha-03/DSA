@@ -1,4 +1,4 @@
-from sortedcontainers import SortedSet
+#from sortedcontainers import SortedSet
 class NumberContainers:
 
     def __init__(self):
@@ -20,7 +20,7 @@ class NumberContainers:
         
 
     def find(self, number: int) -> int:
-        if number in self.number:
+        if number in self.number and self.number[number]:
             return self.number[number][0]
         return -1
 
