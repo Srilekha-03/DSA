@@ -13,3 +13,4 @@ class Solution:
                 values.sort(reverse=True)
                 max_sum = max(max_sum,values[0]+values[1])
         return max_sum
+        
