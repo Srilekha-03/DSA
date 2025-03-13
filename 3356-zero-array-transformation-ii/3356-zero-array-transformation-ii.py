@@ -16,3 +16,4 @@ class Solution(object):
                         diff_array[right + 1] -= value
             sum_value += diff_array[i]
         return query_count
+        
