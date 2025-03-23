@@ -34,3 +34,4 @@ class Solution:
         
         return ways[n-1]
         
+        
