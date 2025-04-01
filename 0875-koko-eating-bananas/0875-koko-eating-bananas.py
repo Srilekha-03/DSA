@@ -15,13 +15,5 @@ class Solution(object):
     def total_hours(self, piles, hour):
         total = 0
         for banana in piles:
-            total += (banana + hour - 1) // hour
+            total += math.ceil(banana / hour)
         return total
-
-
-        """
-        :type piles: List[int]
-        :type h: int
-        :rtype: int
-        """
-        
