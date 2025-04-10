@@ -25,4 +25,3 @@ class Solution:
             return dp[0][1]
 
         return count_powerful_up_to(finish) - count_powerful_up_to(start - 1)
-        
