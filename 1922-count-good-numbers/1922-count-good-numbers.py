@@ -5,3 +5,4 @@ class Solution:
         odd_count = n // 2
         return (pow(5, even_count, MOD) * pow(4, odd_count, MOD)) % MOD
         
+        
