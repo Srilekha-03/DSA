@@ -3,6 +3,7 @@ class Solution:
         r, c = len(moveTime), len(moveTime[0])
         minimumTime = [[float('inf')] * c for _ in range(r)]
         pq = []
+        # (steps, i, j, move)
         heapq.heappush(pq, (-1, 0, 0, 1))
         minimumTime[0][0] = 0
 
@@ -22,4 +23,5 @@ class Solution:
 
             if minimumTime[r - 1][c - 1] != float('inf'):
                 return minimumTime[r - 1][c - 1]
+
         return -1
