@@ -7,8 +7,8 @@ class Solution:
         for i in range(len(s)):
             if s[i]=="(":
                 count+=1
-                maxi=max(maxi,count)
             if s[i]==")":
+                maxi=max(maxi,count)
                 count-=1
         return maxi
         
