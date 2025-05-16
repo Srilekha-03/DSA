@@ -8,5 +8,4 @@ class Solution:
                 if strs[j][i] < strs[j - 1][i]:
                     count += 1
                     break
-
         return count
