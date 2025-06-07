@@ -1,17 +1,18 @@
 class Solution:
     def clearStars(self, s: str) -> str:
-        stack = []
-        
-        for char in s:
-            if char == '*':
-                # Find and remove the smallest character in the stack
-                if stack:
-                    # Find the index of the smallest character
-                    min_char = min(stack)
-                    min_idx = stack.index(min_char)
-                    # Remove the smallest character
-                    stack.pop(min_idx)
+        import heapq
+
+        to_be_removed = set()
+        min_heap = []
+
+        for i, ch in enumerate(s):
+            if ch == '*':
+                out = heapq.heappop(min_heap)
+                to_be_removed.add(-out[1])  # character index
+                to_be_removed.add(i)        # '*' index
             else:
-                stack.append(char)
-        
-        return ''.join(stack)
+                heapq.heappush(min_heap, (ch, -i))  # push char with -index
+
+        # Build the result string excluding removed indices
+        result = ''.join(s[i] for i in range(len(s)) if i not in to_be_removed)
+        return result
