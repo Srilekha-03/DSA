@@ -1,11 +1,12 @@
 # Write your MySQL query statement below
-SELECT DISTINCT num AS ConsecutiveNums
-FROM (
+WITH ConsecutiveNumsCTE AS (
     SELECT 
-        num, 
-        LAG(num) OVER (ORDER BY id) AS prev_num,
-        LEAD(num) OVER (ORDER BY id) AS next_num
+        num,
+        LEAD(num, 1) OVER() AS num1,
+        LEAD(num, 2) OVER() AS num2
     FROM Logs
-) temp
-WHERE num = prev_num AND num = next_num;
-
+)
+SELECT num AS ConsecutiveNums
+FROM ConsecutiveNumsCTE
+WHERE num = num1
+  AND num = num2;
