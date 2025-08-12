@@ -1,4 +1,6 @@
 class Solution:
+    def __init__(self):
+        self.M = 10**9 + 7
     def productQueries(self, n: int, queries: List[List[int]]) -> List[int]:
         powers=[]
         for i in range(32):
@@ -10,7 +12,7 @@ class Solution:
             end=i[1]
             product=1
             for i in range(start,end+1):
-                product*=powers[i]
+                product=(product*powers[i])%self.M
             res.append(product)
         return res
 
