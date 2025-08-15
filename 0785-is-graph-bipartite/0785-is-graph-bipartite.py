@@ -1,22 +1,26 @@
-class Solution(object):
-    def isBipartite(self, graph):
-        n = len(graph)
-        color = [-1] * n
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        n=len(graph)
+        colorr=[-1]*n
+
+        def dfs(index,color):
+            colorr[index]=color
+            for chi in graph[index]:
+                if colorr[chi]==color:
+                    return False
+                elif colorr[chi]==-1:
+                    if dfs(chi,1-color)==False:
+                        return False
+            return True
+
         for i in range(n):
-            if color[i] == -1:
-                queue = deque([i])
-                color[i] = 0 
-                while queue:
-                    node = queue.popleft()
-                    for neighbor in graph[node]:
-                        if color[neighbor] == -1:
-                            color[neighbor] = 1 - color[node]
-                            queue.append(neighbor)
-                        elif color[neighbor] == color[node]:
-                            return False 
+            if colorr[i]==-1:
+                if dfs(i,0)==False:
+                    return False
         return True
-        """
-        :type graph: List[List[int]]
-        :rtype: bool
-        """
+
+        
+
+
+
         
