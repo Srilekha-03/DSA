@@ -6,8 +6,8 @@ class Solution:
         queue=[]
         indegree=[0]*V
         for u,v in edges:
-            adj[u].append(v)
-            indegree[v]+=1
+            adj[v].append(u)
+            indegree[u]+=1
         for i in range(V):
             if indegree[i]==0:
                 queue.append(i)
@@ -19,7 +19,7 @@ class Solution:
                 if indegree[j]==0:
                     queue.append(j)
         if len(res)==V:
-            return res[::-1]
+            return res
         else:
             return []
         
