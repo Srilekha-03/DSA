@@ -1,8 +1,8 @@
 from collections import defaultdict
 class Solution:
     def canFinish(self, V: int, edges: List[List[int]]) -> bool:
+        count=0
         adj=defaultdict(list)
-        res=[]
         queue=[]
         indegree=[0]*V
         for u,v in edges:
@@ -13,10 +13,10 @@ class Solution:
                 queue.append(i)
         while queue:
             node=queue.pop(0)
-            res.append(node)
+            count+=1
             for j in adj[node]:
                 indegree[j]-=1
                 if indegree[j]==0:
                     queue.append(j)
-        return len(res)==V
+        return count==V
         
