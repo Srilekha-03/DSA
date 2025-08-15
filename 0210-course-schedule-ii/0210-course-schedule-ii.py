@@ -2,24 +2,25 @@ from collections import defaultdict
 class Solution:
     def findOrder(self, V: int, edges: List[List[int]]) -> List[int]:
         adj=defaultdict(list)
+        vis=[0]*V
+        inRecur=[0]*V
         res=[]
-        queue=[]
-        indegree=[0]*V
         for u,v in edges:
-            adj[v].append(u)
-            indegree[u]+=1
+            adj[u].append(v)
         for i in range(V):
-            if indegree[i]==0:
-                queue.append(i)
-        while queue:
-            node=queue.pop(0)
-            res.append(node)
-            for j in adj[node]:
-                indegree[j]-=1
-                if indegree[j]==0:
-                    queue.append(j)
-        if len(res)==V:
-            return res
-        else:
-            return []
+            if vis[i]==0 and self.dfs(adj,vis,inRecur,i,res):
+                return []
+        return res
+    def dfs(self,adj,vis,inRecur,i,res):
+        vis[i]=1
+        inRecur[i]=1
+        for j in adj[i]:
+            if vis[j]==0:
+                if self.dfs(adj, vis, inRecur, j,res):
+                    return True
+            elif inRecur[j]==1:
+                return True  
+        res.append(i)              
+        inRecur[i]=0
+        return False
         
