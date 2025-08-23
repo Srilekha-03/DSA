@@ -1,14 +1,16 @@
+from collections import deque
 class Solution:
     def findTheWinner(self, n: int, k: int) -> int:
-        arr=[]
+        q = deque()
         for i in range(1,n+1):
-            arr.append(i)
-        i=0
-        while len(arr)>1:
-            ind=(i+k-1)%len(arr)
-            arr.pop(ind)
-            i=ind
-        return arr[0]
+            q.append(i)
+        while len(q)>1:
+            for i in range(k-1):
+                q.append(q.popleft())
+            q.popleft()
+        return q.popleft()
+
+
 
 
         
