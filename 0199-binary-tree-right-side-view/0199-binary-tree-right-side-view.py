@@ -6,22 +6,17 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        if not root :
+        if root is None:
             return []
-
-        def dfs(root,ind,ans):
-            if not root:
-                return 
-            if len(ans)==ind:
-                ans.append(root.val)
-            else:
-                ans[ind]=root.val
-            dfs(root.left,ind+1,ans)
-            dfs(root.right,ind+1,ans)   
-        ans=[]
-        dfs(root,0,ans) 
-        return ans
-
-
-        
-        
+        result=[]
+        self.recursion(root,result,0)
+        return result
+    def recursion(self,root,result,level):
+        if root is None:
+            return
+        if level==len(result):
+            result.append(root.val)
+        if root.right:
+            self.recursion(root.right,result,level+1)
+        if root.left:
+            self.recursion(root.left,result,level+1)
