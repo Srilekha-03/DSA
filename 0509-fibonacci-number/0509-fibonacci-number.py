@@ -1,14 +1,11 @@
 class Solution:
     def fib(self, n: int) -> int:
         dp=[0]*(n+1)
-        def fibonacci(n):
-            if n<2:
-                return n
-            if dp[n]!=0:
-                return dp[n]
-            dp[n]=fibonacci(n-1)+fibonacci(n-2)
-            return dp[n]
-        ans=fibonacci(n)
-        return ans
+        dp[0]=0
+        if n>0:
+            dp[1]=1
+        for i in range(2,n+1):
+            dp[i]=dp[i-1]+dp[i-2]
+        return dp[n]
 
         
