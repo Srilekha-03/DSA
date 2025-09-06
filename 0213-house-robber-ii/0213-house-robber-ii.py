@@ -1,23 +1,23 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        def rob1(nums: List[int]) -> int:
-            prev2=0
-            prev1=nums[0]
-            for i in range(1,len(nums)):
-                rob=nums[i]
-                if i>1:
-                    rob+=prev2
-                noRob=prev1
-                cur=max(rob,noRob)
-                prev2=prev1
-                prev1=cur
-            return prev1
         n=len(nums)
         if n==1:
             return nums[0]
-        start=nums[:-1]
-        end=nums[1:]
-        return max(rob1(start),rob1(end))
-        
+        if n==2:
+            return max(nums[0],nums[1])
+        dp=[-1]*(n+1)
 
-        
+        def solve(i,n,dp):
+            if i>n:
+                return 0
+            if dp[i]!=-1:
+                return dp[i]
+            rob=nums[i]+solve(i+2,n,dp)
+            norob=solve(i+1,n,dp)
+            dp[i]=max(rob,norob)
+            return dp[i]
+
+        result1=solve(0,n-2,dp)
+        dp=[-1]*(n+1)
+        result2=solve(1,n-1,dp)
+        return max(result1,result2)
