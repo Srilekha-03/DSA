@@ -1,15 +1,14 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        n=len(nums)
-        dp=[-1]*(n+1)
-        def solve(i,n,dp):
-            if i>=n:
-                return 0
-            if dp[i]!=-1:
-                return dp[i]
-            steal=nums[i]+solve(i+2,n,dp)
-            skip=solve(i+1,n,dp)
-            dp[i]=max(skip,steal)
-            return dp[i]
-        return solve(0,n,dp)
+        prev2=0
+        prev1=nums[0]
+        for i in range(1,len(nums)):
+            rob=nums[i]
+            if i>1:
+                rob+=prev2
+            noRob=prev1
+            cur=max(rob,noRob)
+            prev2=prev1
+            prev1=cur
+        return prev1
         
