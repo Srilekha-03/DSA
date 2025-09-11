@@ -1,9 +1,9 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if len(s) == 0:
+        if len(s)==0:
             return 0
         n=len(s)
-        maxi=0
+        maxi=1
         i=0
         se=set()
         se.add(s[i])
