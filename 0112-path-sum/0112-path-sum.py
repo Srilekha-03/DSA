@@ -15,11 +15,12 @@ class Solution:
             if not root.left and not root.right:
                 if summ==targetSum:
                     return True
+                else:
+                    return False
             if helper(root.left,summ):
                 return True
             if helper(root.right,summ):
                 return True
-            summ-=root.val
             return False
 
         return helper(root,0)
