@@ -1,39 +1,40 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution(object):
-    def rotateRight(self, head, k):
-        if not head or not head.next or k == 0:
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next:
             return head
-        
-        length = 1
-        tail = head
-        while tail.next:
-            tail = tail.next
-            length += 1
-        
-        k %= length
-        if k == 0:
+        length=0
+        curr=head
+        while curr:
+            curr=curr.next
+            length+=1
+        k=k%length
+        if k==0:
             return head
-        
-        tail.next = head
-        
-        new_tail_position = length - k - 1
-        new_tail = head
-        for _ in range(new_tail_position):
-            new_tail = new_tail.next
-        new_head = new_tail.next
-        
-        new_tail.next = None
-        
-        return new_head
+        new_head=self.reverse(head)
+        curr2=new_head
+        while k>1:
+            curr2=curr2.next
+            k-=1
+        second_half=curr2.next
+        curr2.next=None
+        first_half=new_head
+        x=self.reverse(first_half)
+        y=self.reverse(second_half)
+        curr3=x
+        while curr3.next:
+            curr3=curr3.next
+        curr3.next=y
+        return x
 
-  
-        """
-        :type head: Optional[ListNode]
-        :type k: int
-        :rtype: Optional[ListNode]
-        """
-        
+    def reverse(self,head):
+        if not head or not head.next:
+            return head
+        new_head=self.reverse(head.next)
+        head.next.next=head
+        head.next=None
+        return new_head
