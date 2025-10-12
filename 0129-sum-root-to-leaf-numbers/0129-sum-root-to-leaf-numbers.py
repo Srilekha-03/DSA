@@ -6,19 +6,16 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        self.paths=[]
-        path=[]
-        self.solve(root,path)
-        lis_int=[int("".join(map(str, p))) for p in self.paths]
-        return sum(lis_int)
+        return self.solve(root,0)
+        
 
-    def solve(self,root,path):
+    def solve(self,root,res):
         if not root:
-            return 
-        path.append(root.val)
+            return 0
+        res=res*10+root.val
         if not root.left and not root.right:
-            self.paths.append(path[:])
-        self.solve(root.left,path)
-        self.solve(root.right,path)
-        path.pop()
+            return res 
+        l=self.solve(root.left,res)
+        r=self.solve(root.right,res)
+        return l+r
         
