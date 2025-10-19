@@ -16,5 +16,5 @@ class Solution:
                 # Start a new interval
                 intervals.append([sc, ec])
                 e = ec
-        return len(intervals)
+        return len(intervals)
         
