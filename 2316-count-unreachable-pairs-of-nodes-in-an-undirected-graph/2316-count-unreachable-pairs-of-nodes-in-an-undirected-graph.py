@@ -25,7 +25,12 @@ class Solution:
             if find(u)!=find(v):
                 union(u,v)
         comp_sizes=Counter(find(i) for i in range(n))
-        total_pairs = n*(n-1)//2
-        inside_pairs = sum(size*(size-1) // 2 for size in comp_sizes.values())
+        ans=0
+        remaining=n
+        for key,val in comp_sizes.items():
+            size=val
+            ans+=size*(remaining-size)
+            remaining=remaining-size
+        return ans
 
-        return total_pairs - inside_pairs
+
