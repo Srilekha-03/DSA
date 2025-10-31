@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict,deque
 class Solution:
     def minScore(self, n: int, roads: List[List[int]]) -> int:
         d=defaultdict(list)
@@ -10,15 +10,19 @@ class Solution:
             d[v].append((u, l))
         vis=[0]*(n+1)
         self.max=float('inf')
-        self.dfs(1,vis,roads,d)
+        q=deque()
+        q.append(1)
+        vis[1]=1
+        while q:
+            node=q.popleft()
+            for val in d[node]:
+                next=val[0]
+                dis=val[1]
+                self.max=min(self.max,dis)
+                if vis[next]!=1:
+                    vis[next]=1
+                    q.append(next)
         return self.max
-    def dfs(self,u,vis,roads,d):
-        vis[u]=1
-        for i in d[u]:
-            v=i[0]
-            l=i[1]
-            self.max=min(self.max,l)
-            if vis[i[0]]==0:
-                self.dfs(v,vis,roads,d)
+        
 
 
