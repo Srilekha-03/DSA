@@ -2,17 +2,16 @@ class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         n=len(text1)
         m=len(text2)
-        dp={}
-        return self.solve(n-1,m-1,text1,text2,dp)
-    def solve(self,n,m,text1,text2,dp):
-        if n<0 or m<0:
-            return 0
-        if (n,m) in dp:
-            return dp[(n,m)]
-        if text1[n]==text2[m]:
-            dp[(n,m)]=1+self.solve(n-1,m-1,text1,text2,dp)
-            return dp[(n,m)]
-        else:
-            dp[(n,m)]=max(self.solve(n-1,m,text1,text2,dp),self.solve(n,m-1,text1,text2,dp))
-            return dp[(n,m)]
-        
+        self.mem=dict()
+        return self.solve(0,0,text1,text2,n,m)
+    def solve(self,i,j,t1,t2,n,m):
+        if i>=n or j>=m:
+            self.mem[(i,j)]=0
+            return self.mem[(i,j)]
+        if (i,j) in self.mem:
+            return self.mem[(i,j)]
+        if t1[i]==t2[j]:
+            self.mem[(i,j)]=1+self.solve(i+1,j+1,t1,t2,n,m)
+            return self.mem[(i,j)]
+        self.mem[(i,j)]=max(self.solve(i,j+1,t1,t2,n,m),self.solve(i+1,j,t1,t2,n,m))
+        return self.mem[(i,j)]
