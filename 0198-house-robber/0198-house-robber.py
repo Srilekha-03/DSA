@@ -1,13 +1,16 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         n=len(nums)
-        if n==1:
-            return nums[0]
-        a=0
-        b=nums[0]
-        c=0
-        for i in range(2,n+1):
-            c=max(nums[i-1]+a, b)
-            a=b
-            b=c
-        return c
+        dp={}
+        def solve(i):
+            if i>=n:
+                return 0
+            if i in dp:
+                return dp[i]
+            rob=nums[i]+solve(i+2)
+            norob=solve(i+1)
+            dp[i]=max(rob,norob)
+            return dp[i]
+
+        return solve(0)
+        
