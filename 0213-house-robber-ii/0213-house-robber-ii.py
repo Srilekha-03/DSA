@@ -1,23 +1,25 @@
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        n=len(nums)
-        if n==1:
+    def rob(self, nums):
+        n = len(nums)
+        if n == 1:
             return nums[0]
-        if n==2:
-            return max(nums[0],nums[1])
-        dp=[-1]*(n+1)
-
-        def solve(i,n,dp):
-            if i>n:
-                return 0
-            if dp[i]!=-1:
-                return dp[i]
-            rob=nums[i]+solve(i+2,n,dp)
-            norob=solve(i+1,n,dp)
-            dp[i]=max(rob,norob)
-            return dp[i]
-
-        result1=solve(0,n-2,dp)
-        dp=[-1]*(n+1)
-        result2=solve(1,n-1,dp)
-        return max(result1,result2)
+        
+        memo = [-1] * (n - 1)
+        house0 = self.solve(nums, 0, n - 1, memo)
+        
+        memo = [-1] * n
+        lasthouse = self.solve(nums, 1, n, memo)
+        
+        return max(house0, lasthouse)
+    
+    def solve(self, nums, i, n, memo):
+        if i >= n:
+            return 0
+        if memo[i] != -1:
+            return memo[i]
+        
+        rob = nums[i] + self.solve(nums, i + 2, n, memo)
+        notRob = self.solve(nums, i + 1, n, memo)
+        
+        memo[i] = max(rob, notRob)
+        return memo[i]
