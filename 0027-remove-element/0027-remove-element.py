@@ -1,10 +1,12 @@
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        dup=[]
-        for i in nums:
-            if i!=val:
-                dup.append(i)
-        n=len(dup)
-        nums[:n]=dup[:]
-        return n
-        
+        i=0
+        n=len(nums)
+        j=n-1
+        while i<=j:
+            if nums[i]==val:
+                nums[j],nums[i]=nums[i],nums[j]
+                j-=1
+            else:
+                i+=1
+        return j+1
