@@ -11,11 +11,7 @@ class Solution:
                 count += 1
             else:
                 count -= 1
-        c1=0
-        for i in nums:
-            if i==candidate:
-                c1+=1
-        if c1>n/2:
-            return candidate
+        
+        return candidate
 
-        return -1
+
