@@ -1,18 +1,17 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-        words = s.split()   
+        words = s.split()
         if len(pattern) != len(words):
             return False
-        char_to_word = {}
         word_to_char = {}
-        for c, w in zip(pattern, words):
-            if c in char_to_word:
-                if char_to_word[c] != w:
+        used_chars = set()
+        for w, p in zip(words, pattern):
+            if w not in word_to_char:
+                if p in used_chars:
                     return False
+                word_to_char[w] = p
+                used_chars.add(p)
             else:
-                if w in word_to_char:
+                if word_to_char[w] != p:
                     return False
-                char_to_word[c] = w
-                word_to_char[w] = c
         return True
-        
