@@ -1,15 +1,21 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        ans=[]
-        def permutation(nums,index,ans):
-            if index==len(nums):
-                ans.append(nums[:])
+        res = []
+        p = []
+        used = set()
+        n = len(nums)
+        def helper():
+            if len(p) == n:
+                res.append(p.copy())
                 return
-            for i in range(index,len(nums)):
-                nums[i],nums[index]=nums[index],nums[i]
-                permutation(nums,index+1,ans)
-                nums[i],nums[index]=nums[index],nums[i]                  
-        permutation(nums,0,ans)
-        return ans
-                
-        
+
+            for i in range(n):
+                if i not in used:
+                    p.append(nums[i])
+                    used.add(i)
+                    helper()
+                    p.pop()
+                    used.remove(i)
+
+        helper()
+        return res
