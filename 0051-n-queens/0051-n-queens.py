@@ -1,46 +1,56 @@
 class Solution:
-    def solveNQueens(self, n: int) -> List[List[str]]:      
-        def isSafe(row,col,board):
-            dup_row=row
-            dup_col=col
-            
-            while row>=0 and col>=0:
-                if board[row][col]=="Q":
-                    return False
-                row-=1
-                col-=1
-            row=dup_row
-            col=dup_col
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        board=[['.' for i in range(n)]for i in range(n)]
+        res=[]
 
-            while col>=0:
-                if board[row][col]=='Q':
+        def isSafe(row,col):
+            r=row
+            c=col
+            for colo in range(n):
+                if board[r][colo]=='Q':
                     return False
-                col-=1
-            col=dup_col
-            while col>=0 and row<n:
-                if board[row][col]=='Q':
+            for rowo in range(n):
+                if board[rowo][c]=='Q':
                     return False
-                row+=1
-                col-=1
+            while r>=0 and c>=0:
+                if board[r][c]=='Q':
+                    return False
+                r-=1
+                c-=1
+            r=row
+            c=col
+            while r>=0 and c<n:
+                if board[r][c]=='Q':
+                    return False
+                r-=1
+                c+=1
+            r=row
+            c=col
+            while r<n and c>=0:
+                if board[r][c]=='Q':
+                    return False
+                r+=1
+                c-=1
+            r=row
+            c=col
+            while r<n and c<n:
+                if board[r][c]=='Q':
+                    return False
+                r+=1
+                c+=1
             return True
-        def solve(col,board,ans,n):
-            if col==n:
-                ans.append([''.join(row) for row in board])
+
+
+        def solve(col):
+            if col>=n:
+                res.append(["".join(row) for row in board])
                 return
             for row in range(n):
-                if isSafe(row,col,board):
+                if isSafe(row,col):
                     board[row][col]='Q'
-                    solve(col+1,board,ans,n)
+                    solve(col+1)
                     board[row][col]='.'
-        ans=[]
-        board = [['.' for _ in range(n)] for _ in range(n)]
-        solve(0,board,ans,n)
-        return ans
-        
-            
 
-            
-
-
-
+        solve(0)
+        return res
         
