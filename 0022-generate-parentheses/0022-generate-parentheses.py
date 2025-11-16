@@ -1,21 +1,19 @@
-class Solution(object):
-    def generateParenthesis(self, n):
-        """
-        :type n: int
-        :rtype: List[str]
-        """
-        result = []
-        self.generateParenthesisHelper(n, n, "", result)
-        return result
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res=[]
+        string=""
+        openn=0
+        close=0
 
-    def generateParenthesisHelper(self, left, right, current, result):
-        if left == 0 and right == 0:
-            result.append(current)
-            return
+        def solve(string,res,openn,close):
+            if len(string)==2*n:               
+                res.append(string)
+                return 
+            if openn<n:
+                solve(string+"(",res,openn+1,close)
+            if close<openn:
+                solve(string+')',res,openn,close+1)
 
-        if left > 0:
-            self.generateParenthesisHelper(left - 1, right, current + "(", result)
-        if right > left:
-            self.generateParenthesisHelper(left, right - 1, current + ")", result)
-
+        solve(string,res,openn,close)
+        return res
         
