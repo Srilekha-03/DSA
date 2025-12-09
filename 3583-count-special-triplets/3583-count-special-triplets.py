@@ -1,23 +1,30 @@
-from collections import defaultdict
-class Solution(object):
+class Solution:
     def specialTriplets(self, nums):
-        freqLeft=defaultdict(int)
-        freqRight=defaultdict(int)
-        triplets=0
         MOD = 10**9 + 7
-        for num in nums:
-            freqRight[num]+=1
-        for i in range(len(nums)):
-            num=nums[i]
-            freqRight[num]-=1
-            double=num*2
-            triplets+=freqLeft[double]*freqRight[double]
-            triplets=triplets%MOD
-            freqLeft[num]+=1
-        return triplets
-            
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
         
+        left = {}
+        right = {}
+
+        for x in nums:
+            right[x] = right.get(x, 0) + 1
+            
+        ans = 0
+        
+        for j in range(len(nums)):
+            center = nums[j]
+
+            right[center] -= 1
+            if right[center] == 0:
+                del right[center]
+            
+            target = center * 2
+            
+            left_count = left.get(target, 0)
+            right_count = right.get(target, 0)
+            
+            ans += (left_count * right_count)
+            ans=ans%MOD
+
+            left[center] = left.get(center, 0) + 1
+        
+        return ans % MOD
