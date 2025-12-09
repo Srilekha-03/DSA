@@ -27,4 +27,4 @@ class Solution:
 
             left[center] = left.get(center, 0) + 1
         
-        return ans % MOD
+        return ans
