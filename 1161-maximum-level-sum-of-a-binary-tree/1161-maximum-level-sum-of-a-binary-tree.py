@@ -8,32 +8,27 @@ from math import inf
 from collections import deque
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
-        ans=dict()
         q=deque()
         q.append(root)
         level=1
+        maxi=-inf
+        ans=1
         while q:
-            temp=[]
             n=len(q)
+            maxv=0
             for i in range(n):
                 node=q.popleft()
-                temp.append(node.val)
+                maxv+=node.val
                 if node.left:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
-            ans[level]=temp
+            if maxv>maxi:
+                maxi=maxv
+                ans=level
             level+=1
-        for key,val in ans.items():
-            ans[key]=sum(val)
-            
-        maxi=-inf
-        maxl=-1
-        for key,val in ans.items():
-            if val>maxi:
-                maxi=val
-                maxl=key
-        return maxl
+        return ans
+        
 
 
         
