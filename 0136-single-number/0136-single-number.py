@@ -1,12 +1,13 @@
-class Solution(object):
-    def singleNumber(self, nums):
-        xor=0
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        d=dict()
         for i in nums:
-            xor=xor^i
-        return xor
-        
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        
+            if i in d:
+                d[i]+=1
+            else:
+                d[i]=1
+        for key in d.keys():
+            if d[key]==1:
+                return key
+
+
