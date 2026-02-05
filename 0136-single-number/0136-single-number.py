@@ -1,6 +1,6 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        d=dict()
+        d={}
         for i in nums:
             if i in d:
                 d[i]+=1
